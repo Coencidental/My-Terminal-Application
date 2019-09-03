@@ -1,4 +1,4 @@
-require_relative 'card_logic_class'
+require_relative '../Classes/card_logic_class'
 
 system('clear')
 p "Welcome to Coen Drexler's mental and emotional snap"

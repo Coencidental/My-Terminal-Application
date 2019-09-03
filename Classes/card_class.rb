@@ -14,7 +14,7 @@ class Card
     drawsuit, drawvalue = drawcardvalues(@value, @suit)
     puts "
     ______
-    |#{drawvalue}    |
+    |#{drawvalue}   |
     |     |
     |     |
     |____#{drawsuit}|
@@ -25,17 +25,19 @@ class Card
 
     case a
     when 'Ace'
-      drawvalue = "A"
-    when *(2..10).map(&:to_s)
+      drawvalue = "A "
+    when *(2..9).map(&:to_s)
+      drawvalue = a.to_s + " "
+    when '10'
       drawvalue = a.to_s
     when 'Jack'
-      drawvalue = "J"
+      drawvalue = "J "
     when 'Queen'
-      drawvalue = "Q"
+      drawvalue = "Q "
     when 'King'
-      drawvalue = "K"
+      drawvalue = "K "
     else
-      drawvalue = 'X'
+      drawvalue = 'X '
     end
 
     case b
