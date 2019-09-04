@@ -89,9 +89,9 @@ class Game
   end
 
   def compare(card1, card2)
-    if @gamelogic == 1
+    if @gamelogic == 0
       return (card1.value == card2.value)
-    else
+    elsif @gamelogic == 1
       return (card1.suit == card2.suit)
     end
   end
