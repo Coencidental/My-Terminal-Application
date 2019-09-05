@@ -1,5 +1,5 @@
 ﻿
-# The Great Mental Snap (Ruby - Documentation)
+# Coen Drexler - The Great Mental Snap (Term 1 Terminal Application Project, Coder Academy)
 
 By Coen Drexler, started at 3:00PM, 2-9-2019
 
@@ -9,6 +9,8 @@ By Coen Drexler, started at 3:00PM, 2-9-2019
 'The Great Mental Snap' is a single-player terminal application built to simulate the colloquially popular card game 'Snap', using the Ruby programming language.
 
 The intention of this project was to expand and also reinforce my personal understanding of practically implementing the fundamental concepts of program development and modular, DRY code writing, in order to realistically simulate the interactive mechanics of a concept reliant upon both logic and mathematics.  
+
+![enter image description here](https://raw.githubusercontent.com/Coencidental/My-Terminal-Application/master/Documentation/Welcomemessage.PNG)
 
 This application operates using text/character input, which is evaluated against a simulated opponent's reaction speed for either a win or lose case.  This simulated reaction time is adjustable, allowing for variance in difficulty.  Card totals are tracked and displayed as they change, alongside a point counter.  
 
@@ -62,7 +64,9 @@ The common features that held my interest in my initial research phase were more
 
 After deciding against pursuing the previously mentioned projects, I turned my focus to projects revolving around logic, namely card games.  In my initial experimentation, I considered implementing a drawn GUI, but I found it counter-intuitive to the process of cementing my basic programming skills.  Instead, I examined what input and output a simple terminal application can utilise to engage a user, and found the simple idea of a reflex/reaction based application far more appealing and genuinely engaging than any of the alternatives.  
 
-'Snap' was a particularly appealing project in the simple nature of how it operates, entertaining the player by psychological/physiological stimulation, rather than sensory focused stimulation *typical* applications utilise.  Of course, a conjunction of the two provides exponentially increased functionality and potential, but for the criteria and timeframe of this project, a purely terminal based application was more suitable than trying to integrate a GUI.
+'Snap' was a particularly appealing project in the simple nature of how it operates, entertaining the player by psychological/physiological stimulation, rather than sensory focused stimulation *typical* applications utilise.  Of course, a conjunction of the two provides exponentially increased functionality and potential, but for the criteria and timeframe of this project, a purely terminal based application was more suitable than trying to integrate a GUI.  Even so, I aimed to construct a relatively pleasant interface, relying on minimalism to convey the same variables.
+
+![enter image description here](https://raw.githubusercontent.com/Coencidental/My-Terminal-Application/master/Documentation/gameplay.PNG)
 
 The concept of ruby-driven audio processing is certainly still extremely interesting to me, and in the near future I would love to revisit the idea of building a VST that cooperates with own DAW of choice.  
 
@@ -89,7 +93,7 @@ Within each of these individual objects, there are functions I have written to p
 
 ### Extensible Features
 
-The code of this application is designed to be modular, and therefore upgradeable.  In the future, this concept could be taken further by including:
+The code of this application is designed to be modular.  In the future therefore, this concept could be taken further by including:
 
 - Using a random number generator in conjunction with a ranged arguments allows for human behaviour in the automated reaction time, however, implementing an additional adaptive difficulty setting, (constantly readjusting a mean average reaction time variable), would add dynamicism to interaction, and a realistic sense of adaptation in the simulated opponent.
 - More extensive art and perhaps ruby GUI gem integration (such as [Curses](https://rubygems.org/gems/curses/versions/1.2.4) or [Gosu](https://rubygems.org/gems/gosu) would contribute massively to user ability in easily and effectively deciphering different card values and suits.  
@@ -101,6 +105,10 @@ The code of this application is designed to be modular, and therefore upgradeabl
 After confirming the individual project details, requirements and overall elements, an initial draft build was done to explore exactly how the execution of the game logic would be achieved.  This consisted of a single ruby file, 2 classes, and incredibly lacking optimization for efficiency/modularization.  At the time, this was necessary to gain a grounded understanding of how to mathematically distribute my required variables and objects, and gave an excellent reference when it came to creating a more modular reformat of this project, with a focus on shared variables.  
 
 Focusing more on refining the code and logic, I decided that 3 classes would allow me to divide the steps I needed into user interaction, game generation/flow control, and card generation/flow control.  This worked for a simple implementation, but it immediately became clear that it would make far more sense to use 4 modules instead of 3, as it would allow me to split the card logic into two parts, and classify one as a deck object, forming an intermediary initializer/controller for my required card objects.  
+
+![Class Interactions](https://raw.githubusercontent.com/Coencidental/My-Terminal-Application/master/Documentation/Class%20Interactions.png)
+
+
 
 
 ## Build Status
@@ -125,6 +133,8 @@ Given the timeframe and the independent nature of the terminal application devel
 
 In order to consistently get the results I required from my application and the individual modules that make it up, I kept the core logic that it operates on as simple as possible, which was all that was necessary for a card game such as 'Snap'.
 
+Tests were written regardless for the core functions of the game to ensure they return the correct result.  
+
 Additionally, by including card counting and displaying logic in the game, I mitigated the need to have a specific test for card distribution throughout the game. 
 
 ## Accessibility
@@ -137,10 +147,18 @@ For important elements of gameplay, namely when being prompted with a win or los
 
 ### Increased Output Size and Difficulty Configuration
 
+In addition to color, user ease of text interpretation was my second focus.  I implemented a gem to convert key text to ASCII art (see [Artii]([https://github.com/miketierney/artii](https://github.com/miketierney/artii))) so that it would be both more aesthetically pleasing, and also more discernible to any user trying to interpret it.
 
 
 
 
 
+## License
 
-## Ethics
+**Copyright (c) 2019 Coen Drexler**  for  [Coder Academy](https://coderacademy.edu.au/).
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to  use, copy, modify, merge, publish, distribute, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
