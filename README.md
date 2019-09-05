@@ -20,30 +20,33 @@ The only unmentioned additional *option* included for this project on top of the
 
 Playing instructions:
 
-1)  Open rungame.rb
-2)  When welcomed, enter any set of characters to move to the game setup menu. 
-3)  If required, enter R to read the game rules. 
-4)  When prompted, enter your desired difficulty.
-5)  When prompted, enter your desired card comparison logic.
-6)  After the game has initialized, when prompted, enter any character to display cards.
-7) If you wish to snap, hit enter.  
+1)  Change your working directory to the Snap file
+2)  Enter `ruby run_game.rb`
+3)  When welcomed, enter any set of characters to move to the game setup menu. 
+4)  If required, enter R to read the game rules. 
+5)  When prompted, enter your desired difficulty.
+6)  When prompted, enter your desired card comparison logic.
+7)  After the game has initialized, when prompted, enter any character to display cards.
+8) If you wish to snap, hit enter.  Otherwise, enter nothing.  
+
+Upon running the game, you will be prompted if you'd like to read a more extensive set of rules.
 
 ### Installation:  
 
 1) If you don't already have Ruby installed, you can download it from and follow the installation instructions available [here](https://www.ruby-lang.org/en/documentation/installation/).  
-2) Download and uncompress the game files in their given file structure.
+2) Download and uncompress the game files in their existing file structure.
 3)  Install Ruby Bundler if you haven't already.
-4)  Run `bundle install`
-5)  Change your working directory the now unzipped 'Main' folder.
-6)  Run `ruby run_game.rb` in the command line to access and execute the game initializing ruby file.
-7)  If this does not work 
+3.5)  *Run `bundle install`*
+4)  Change your working directory the now unzipped 'Main' folder.
+5)  Run `ruby run_game.rb` in the command line to access and execute the game initializing ruby file.
+6)  If this does not work 
 
 
 ## Idea/Project Motivation
 
-During my first and second week learning fundamental programming skills attending [Coder Academy's Fast Track Program](https://coderacademy.edu.au/), 
+During my first and second week of learning fundamental programming skills while attending [Coder Academy's Fast Track Program](https://coderacademy.edu.au/), it was posed that we'd have to built applications during the course, so I did my best to try to have a comprehensive list of potential projects to start on, however, as I gained a better perspective on the requirements, and a better understanding of my own limitations, I found myself unsure of where to start.  When it came time to properly start this project, I decided to instead focus on what I was looking to demonstrate with my project.  
 
-During the initial planning phase, I found myself motivated to go in a number of directions, searching for a project that would both demonstrate proficient use of fundamental concepts in software development, and also reflect my personal interests as a developer.
+During the initial planning phase, I found myself motivated to go in a number of directions, searching for a project that would both demonstrate proficient use of the fundamental concepts in software development, and also allow me to exercise some of creativity and reflect my personal interests as a developer.
 
 Of these, the most actively researched and pursued potential projects were:
 
@@ -53,17 +56,19 @@ Of these, the most actively researched and pursued potential projects were:
 -   `A PDF/e-book file organisation tool, with a read, bookmark, and search function`
 -   `A command line operated VST audio plugin for a Digital Audio Workstation`
 
-I decided for each of these that I would be limited by the scope of the nature of a terminal application, the lack of available language support, the timeframe and complexity involved outweighing the educational utilitarianism of a dense yet straightforward alternative, or that I'd be missing particular features I was requiring out of my project.  
+I decided for each of these that I would be either: limited by the scope of the nature of a terminal application, the lack of available language support, the timeframe and complexity involved outweighing the educational utilitarianism of a more straightforward alternative, or that I'd be missing particular features I was desiring out of my project.  
 
-After deciding against pursuing these projects, I turned my focus to projects revolving around logic, namely card games.  In my initial experimentation, I considered implementing a drawn GUI, but I found it counter-intuitive to the process of cementing my basic programming skills.  Instead, I examined what input and output a simple terminal application could utilise, and found the concept of a reflex/reaction based application a perfect contrast to the simple interface a terminal offers.  
+The common features that held my interest in my initial research phase were more intricate concepts of input/output, particularly those involving audio interpretation/manipulation.  Rather than focusing on what I defined as sufficient complexity in the project idea, I found myself more interested in the relationship between the three contributing elements: the user/s, the input, and the output.  I decided early on that when using a relatively simple input/output environment, I would be able to achieve a far more meaningful interaction with the user if I focused on taking advantage of them, rather than allowing them to take advantage of the program.  
 
-'Snap' was a particularly appealing project in the simple nature of how it operates, entertaining the player by nature of a psychological/physiological stimulation, as opposed to the sensory focused stimulation typical applications utilise.  Of course, a conjunction of the two provides increased functionality and potential, but for the criteria of this project a purely terminal application is more suitable.
+After deciding against pursuing the previously mentioned projects, I turned my focus to projects revolving around logic, namely card games.  In my initial experimentation, I considered implementing a drawn GUI, but I found it counter-intuitive to the process of cementing my basic programming skills.  Instead, I examined what input and output a simple terminal application can utilise to engage a user, and found the simple idea of a reflex/reaction based application far more appealing and genuinely engaging than any of the alternatives.  
+
+'Snap' was a particularly appealing project in the simple nature of how it operates, entertaining the player by psychological/physiological stimulation, rather than sensory focused stimulation *typical* applications utilise.  Of course, a conjunction of the two provides exponentially increased functionality and potential, but for the criteria and timeframe of this project, a purely terminal based application was more suitable than trying to integrate a GUI.
 
 The concept of ruby-driven audio processing is certainly still extremely interesting to me, and in the near future I would love to revisit the idea of building a VST that cooperates with own DAW of choice.  
 
 ## Features and Functionality
 
-When originally designing 'The Great Mental Snap', I required several core features out of my finished program.
+When originally designing 'The Great Mental Snap', I required several core features out of my finished program:
 
 ### Core Features
 
@@ -84,9 +89,11 @@ Within each of these individual objects, there are functions I have written to p
 
 ### Extensible Features
 
+The code of this application is designed to be modular, and therefore upgradeable.  In the future, this concept could be taken further by including:
+
 - Using a random number generator in conjunction with a ranged arguments allows for human behaviour in the automated reaction time, however, implementing an additional adaptive difficulty setting, (constantly readjusting a mean average reaction time variable), would add dynamicism to interaction, and a realistic sense of adaptation in the simulated opponent.
 - More extensive art and perhaps ruby GUI gem integration (such as [Curses](https://rubygems.org/gems/curses/versions/1.2.4) or [Gosu](https://rubygems.org/gems/gosu) would contribute massively to user ability in easily and effectively deciphering different card values and suits.  
-- 
+- Allowing for additional players, particularly other human users, and assignable input for multi-player games.
 
 
 ## Code Structure
@@ -98,24 +105,42 @@ Focusing more on refining the code and logic, I decided that 3 classes would all
 
 ## Build Status
 
-'The Great Mental Snap' is in a proof-of-concept state, performing the basic functions I established as requirements during my design and planning process.  
+'The Great Mental Snap' is in a proof-of-concept state, at this point capable of performing the functions I established as requirements during my design and planning process.  
 
 
 
 
 ## Design and Planning process
 
-- TRELLO
+When first approaching this project, I found it initially difficult to conceive of something that was within the confines of my ability, while simultaneously not sacrificing creativity.  
 
-- IO DIAGRAM
+
+
+![Overall gameplay logical processes breakdown](https://raw.githubusercontent.com/Coencidental/My-Terminal-Application/master/Documentation/DevPlan.png)
+
 
 ## Testing
 
-Given the timeframe and individual nature of the terminal application development project, I found the most educational aspect to be the experimentation with algorithm design, which largely limited the amount of testing that would be necessary.  In order to consistently get the results I required from my application and the individual modules that make it up
+Given the timeframe and the independent nature of the terminal application development project, I found the most educational factor of the entire development process to be the experimentation with algorithm design it required, during which time a large number of the fundamental holes in the reconstructed game logic were identified and corrected.  This largely limited the amount of testing required, however in hindsight, it is evident that adopting a far more simultaneous Test Driven Development approach to this project would have allowed me to correct those issues before they were ever coded.  
+
+In order to consistently get the results I required from my application and the individual modules that make it up, I kept the core logic that it operates on as simple as possible, which was all that was necessary for a card game such as 'Snap'.
+
+Additionally, by including card counting and displaying logic in the game, I mitigated the need to have a specific test for card distribution throughout the game. 
 
 ## Accessibility
 
-Colour and timing 
+In order to add accessibility enchancing features to my application, I addressed what I consider to be the main drawback of this nature of program.  The only necessary sense for playing snap in this application is sight, so my aim was to improve the user ability to decipher key elements of gameplay.
+
+### Color Differentiation
+
+For important elements of gameplay, namely when being prompted with a win or loss message during each round and when reviewing all round results at the conclusion of a match, I ensured there was a consistent binary color theme.  Blue and red predominately represent actions positive and negative towards gameplay respectively.
+
+### Increased Output Size and Difficulty Configuration
+
+
+
+
+
 
 
 ## Ethics
