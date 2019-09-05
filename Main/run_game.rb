@@ -21,10 +21,10 @@ Welcome to Coen Drexler's mental and emotional (inverse) snap, enjoy your game!
 
 loop do
   
-  puts "Press E to exit, and anything else to play a game of snap"
+  puts "Press E to exit, and anything else to play a game!"
   break if gets.chomp.downcase == 'e'
   system('clear')
-  puts "Enter R to read the rules of snap, and anything else to continue"
+  puts "Enter R to read the rules of snap, and anything else to continue."
   readrules = gets.strip
   if (readrules == "R") || (readrules == "r")
 
@@ -46,9 +46,12 @@ loop do
     6: Rounds will repeat until one player reaches 0 cards, and will be declared the winner.
 
     7: Good luck!  And remember, don't hold back, your computer knows just how quick you can be.
+
+    Whenever you're ready to continue, enter anything.
     "
 
     loop do
+      # Places the user until they have had enough time to read the rules, and breaks when any input occurs
       break if gets
     end
   end
@@ -65,7 +68,7 @@ loop do
     puts artii.asciify("NOW WE-A COOKIN'").colorize(:light_red)
   end
   puts " "
-  puts "You can either play by suit (Spades - Spades) pairs, or by index (Ace - Ace) pairs"
+  puts "You can either play by suit pairs (Spades - Spades), or by index pairs (Ace - Ace)"
   sleep(1)
   puts "Enter '1' for suit pairs, and '0' or anything else for normal index pairs"
   gamelogic = (gets.strip.to_i == 1) ? 1 : 0

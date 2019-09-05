@@ -3,7 +3,7 @@ require 'colorize'
 require 'artii'
 require_relative 'deck' 
 
-
+# Game class:  This class serves as the overall constructor and controller for each game, holding all game variables and configurations
 class Game
   def initialize(difficulty, gamelogic)
     @difficulty = 
@@ -172,7 +172,7 @@ class Game
       # Otherwise, the computer must be the winner.
       puts "*sad trombone* You lost that game!"
     end
-    puts "Would you like to view the round results of the game?"
+    puts "Would you like to view the round results of the game?  Enter 1 if you would, anything else to continue."
     # On confirmation, the user can review the game results tally using an internal method that resets for each game initialization
     if gets.strip.to_i == 1
       self.announce_scores
@@ -190,13 +190,13 @@ class Game
     end
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     puts "Bot: " + @round_totals_computer.flatten.join(" - ")
-    puts "~~~~~ You won #{@round_totals_user.flatten.count('W'.colorize(:light_blue))} game/s ~~~~~"
+    puts "~~~~~ You won #{@round_totals_user.flatten.count('W'.colorize(:light_blue))} round/s ~~~~~"
     # line 197 includes colorize because otherwise, it doesn't not recognise the W it is passed
     puts "You: " + @round_totals_user.flatten.join(" - ")
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     loop do
       exitscores = gets.strip
-      if exitscores != "91m"
+      if exitscores != "impossiblestring"
         break 
       end   
     end
