@@ -23,7 +23,13 @@ loop do
   puts "Press E to exit, and anything else to play a game of snap"
   break if gets.chomp.downcase == 'e'
   system('clear')
-  sleep(1)
+  puts "Enter R to read the rules of snap, and anything else to continue"
+  if gets.strip == ("R" || "r")
+    puts "Rules of snap"
+    loop do
+      break if gets
+    end
+  end
   puts "What difficulty would you like? 1 for easy, 2 for moderate, and 3 for hard"
   # Using player input to determine difficulty argument for game object
   difficulty = gets.strip.to_i
