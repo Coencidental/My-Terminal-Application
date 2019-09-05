@@ -37,7 +37,7 @@ class Game
       '
       puts 'Your card total is currently: ' + @deck_player.count.to_s
       puts 'The computer card total is: ' + @deck_computer.count.to_s
-      puts "Whenever you're ready for your cards, enter 1"
+      puts "Whenever you're ready for your cards, enter any character you like, and be ready to hit enter if you want to snap!"
       puts "[Your points: #{@points}]
       "
       puts '---------------------------------------------'
@@ -85,8 +85,6 @@ class Game
         else  
           1
         end
-
-
       @user_snapped = Timeout::timeout((@random_number)) do
         gets
       end
@@ -183,7 +181,6 @@ class Game
       puts "Thanks for playing!" 
     end
     sleep(2)
-    
   end
 
   def announce_scores
@@ -192,10 +189,10 @@ class Game
     roundcount.times do |x|
       roundcount_array << x + 1
     end
-    # puts "     " + roundcount_array.join(", ")
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     puts "Bot: " + @round_totals_computer.flatten.join(" - ")
     puts "~~~~~ You won #{@round_totals_user.flatten.count('W'.colorize(:light_blue))} game/s ~~~~~"
+    # line 197 includes colorize because otherwise, it doesn't not recognise the W it is passed
     puts "You: " + @round_totals_user.flatten.join(" - ")
     puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     loop do
