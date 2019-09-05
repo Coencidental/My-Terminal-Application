@@ -1,15 +1,23 @@
 require_relative '../Classes/card_logic_class'
 require 'colorize'
+require 'artii'
 system('clear')
 
 # This file controls the initial welcoming of a user, the gathering of game arguments, and ensures a loop state is active until the user desires the game to end
+artii = Artii::Base.new :font => 'slant', :mode => 'blink'
+puts artii.asciify("> THE    ").colorize(:light_red)
+puts artii.asciify("  GREAT <").colorize(:light_gray)
+puts artii.asciify("> MENTAL ").colorize(:light_red)
+puts artii.asciify("  SNAP < ").colorize(:light_gray)
 
-puts "Welcome to Coen Drexler's mental and emotional snap".colorize(:light_blue)
+
+puts "Welcome to Coen Drexler's mental and emotional snap, it's been a hell of a ride getting here".colorize(:light_blue)
 loop do
-  p "Press E to exit, and anything else to play a game of snap"
+  puts "~~~~~~~~~~~~~~~~~~~~~~~"
+  puts "Press E to exit, and anything else to play a game of snap"
   break if gets.chomp.downcase == 'e'
   sleep(1)
-  p "What difficulty would you like? 1 for easy, 2 for moderate, and 3 for hard"
+  puts "What difficulty would you like? 1 for easy, 2 for moderate, and 3 for hard"
   # Using player input to determine difficulty argument for game object
   difficulty = gets.strip.to_i
   if difficulty == 1
