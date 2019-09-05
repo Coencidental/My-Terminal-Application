@@ -1,5 +1,6 @@
 require 'timeout'
 require 'colorize'
+require 'artii'
 require_relative 'deck' 
 
 
@@ -25,28 +26,31 @@ class Game
     @snap = false
     @round_totals_user = []
     @round_totals_computer = []
-
+    @artiivalues = Artii::Base.new :font => 'slant'
   end
 
   def play
     # This is the main controller method that dictates the flow the the program within the confines of a single game, and only a single game
     while @round_complete == false
       system('clear')
-      p '---------------------------------------------'
-      p 'Your card total is currently: ' + @deck_player.count.to_s
-      p 'The computer card total is: ' + @deck_computer.count.to_s
-      p "Whenever you're ready for your cards, enter 1"
-      p "[Your points: #{@points}]"
+      puts '---------------------------------------------
+      '
+      puts 'Your card total is currently: ' + @deck_player.count.to_s
+      puts 'The computer card total is: ' + @deck_computer.count.to_s
+      puts "Whenever you're ready for your cards, enter 1"
+      puts "[Your points: #{@points}]
+      "
+      puts '---------------------------------------------'
       # Prior to beginning each round, the game will print card totals and point standing
-      userinput = gets.strip.to_i
-      if userinput == 1
+      userinput = gets.strip
+      if userinput != ""
         system('clear')
-        self.round 
+        self.round
         if @deck_player.count == 0 || @deck_computer.count == 0
           @round_complete = true
         end
       else 
-        puts "Invalid input"     
+        puts "That's an invalid input"     
         # Checks user input to ensure their input is intentional, and also to ensure self.round calls don't stack up unintentionally
       end
     end
@@ -112,17 +116,19 @@ class Game
     # For each round, uses process of elimination to simply check the results
     if @user_snapped == false
       if @snap == true
-        puts "You Lost! :("
+        puts @artiivalues.asciify("You Lost!").colorize(:light_red)
         self.computer_win
       else
+        puts @artiivalues.asciify("You tied!")
         self.tie
+        
       end
     else
        if @snap == true
-        puts "You snapped, and won"
+        puts @artiivalues.asciify("You snapped, and won!").colorize(:light_blue)
         self.user_win
        else
-        puts "You snapped unnecessarily!"
+        puts @artiivalues.asciify("You snapped unnecessarily!").colorize(:light_red)
         self.computer_win
        end
     end
@@ -154,7 +160,6 @@ class Game
 
   def tie
     # Places both currently played cards into a pot, and writes a 'tie' entry in to the game results object for later review
-    puts "It's a tie!"
     @pot << @roundcard_computer
     @pot << @roundcard_player
     @round_totals_computer << ["T"]
