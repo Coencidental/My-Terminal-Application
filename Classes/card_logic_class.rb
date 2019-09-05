@@ -177,7 +177,7 @@ class Game
     # On confirmation, the user can review the game results tally using an internal method that resets for each game initialization
     if gets.strip.to_i == 1
       self.announce_scores
-    else
+     else
       puts "Thanks for playing!" 
     end
     sleep(2)
