@@ -3,6 +3,9 @@ GEM
   specs:
     artii (2.1.2)
     colorize (0.8.1)
+    power_assert (1.1.5)
+    test-unit (3.3.3)
+      power_assert
     timeout (0.0.1)
       timeout-extensions
     timeout-extensions (0.1.1)
@@ -13,6 +16,7 @@ PLATFORMS
 DEPENDENCIES
   artii (~> 2.1)
   colorize (~> 0.8.1)
+  test-unit (~> 3.3)
   timeout (~> 0.0.1)
 
 BUNDLED WITH
