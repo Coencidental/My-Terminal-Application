@@ -67,7 +67,6 @@ class Game
     self.react
     self.analyse_results
     sleep(1)
-    
   end
 
   def react
