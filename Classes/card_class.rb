@@ -22,7 +22,9 @@ class Card
   end
 
   def drawcardvalues(a, b)
+    # Called using both currently played cards, and will check both attributes, then draw a corresponding character for both. 
 
+    
     case a
     when 'Ace'
       drawvalue = "A "
@@ -37,7 +39,7 @@ class Card
     when 'King'
       drawvalue = "K "
     else
-      drawvalue = 'X '
+      drawvalue = '? '
     end
 
     case b

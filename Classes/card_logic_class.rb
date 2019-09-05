@@ -1,10 +1,12 @@
 require 'timeout'
+require 'colorize'
 require_relative 'deck' 
 
 
 class Game
   def initialize(difficulty, gamelogic)
     @difficulty = 
+      # Ensures user input falls within one of 3 inbuilt difficulty settings
       if difficulty == 1
         1
       elsif difficulty == 2
@@ -12,7 +14,8 @@ class Game
       else 
         3
       end
-    
+
+    # As the logic is a binary argument, it can be assigned to the user input directly
     @gamelogic = gamelogic
     @refdeck = Deck.new()
     @deck_player, @deck_computer = @refdeck.split
@@ -20,17 +23,21 @@ class Game
     @round_complete = false
     @points = 0
     @snap = false
+    @round_totals_user = []
+    @round_totals_computer = []
 
   end
 
   def play
-
+    # This is the main controller method that dictates the flow the the program within the confines of a single game, and only a single game
     while @round_complete == false
       system('clear')
-      p 'Your card total is: ' + @deck_player.count.to_s
+      p '---------------------------------------------'
+      p 'Your card total is currently: ' + @deck_player.count.to_s
       p 'The computer card total is: ' + @deck_computer.count.to_s
       p "Whenever you're ready for your cards, enter 1"
       p "[Your points: #{@points}]"
+      # Prior to beginning each round, the game will print card totals and point standing
       userinput = gets.strip.to_i
       if userinput == 1
         system('clear')
@@ -40,12 +47,14 @@ class Game
         end
       else 
         puts "Invalid input"     
+        # Checks user input to ensure their input is intentional, and also to ensure self.round calls don't stack up unintentionally
       end
     end
     self.announce_winner
   end
 
   def round
+    # Essentially a sub-controller method, called within the primary control loop of the play method, used to control the logic flow for each round increment
     @user_snapped = false
     @roundcard_player = @deck_player.pop
     @roundcard_computer = @deck_computer.pop
@@ -58,6 +67,7 @@ class Game
   end
 
   def react
+    # Used to provide a limited, configurable window of time for the user to respond.  Useful for any time restricted application
     begin
       @random_number = 
         if @snap == true
@@ -82,6 +92,7 @@ class Game
   end
 
   def draw(card1, card2)
+    # Prints both cards simultaneously using internal card draw method
     puts "Your card is: "
     card1.draw
     puts "The computers card is: "
@@ -89,6 +100,7 @@ class Game
   end
 
   def compare(card1, card2)
+    # Used to compare a specific attribute of two cards simultaneously, and compare them based on the pre-determined game logic
     if @gamelogic == 0
       return (card1.value == card2.value)
     elsif @gamelogic == 1
@@ -97,6 +109,7 @@ class Game
   end
 
   def analyse_results
+    # For each round, uses process of elimination to simply check the results
     if @user_snapped == false
       if @snap == true
         puts "You Lost! :("
@@ -116,41 +129,76 @@ class Game
   end
 
   def computer_win
+    # Called for each computer win case, adjusts points and cards accordingly, and writes corresponding entries to the 'game results' variable for later review
     @points -= 10
     @pot.each do |x|
       @deck_player << @pot.pop 
     end
     @deck_player << @roundcard_computer
     @deck_player << @roundcard_player
+    @round_totals_computer << ["W".colorize(:light_blue)]
+    @round_totals_user << ["L".colorize(:red)]
   end
 
   def user_win
+    # Inverse to computer win method
     @points += 10
     @pot.each do |x|
       @deck_computer << @pot.pop
     end
     @deck_computer << @roundcard_computer
     @deck_computer << @roundcard_player
+    @round_totals_computer << ["L".colorize(:red)]
+    @round_totals_user << ["W".colorize(:light_blue)]
   end
 
   def tie
+    # Places both currently played cards into a pot, and writes a 'tie' entry in to the game results object for later review
     puts "It's a tie!"
     @pot << @roundcard_computer
     @pot << @roundcard_player
+    @round_totals_computer << ["T"]
+    @round_totals_user << ["T"]
   end
 
   def announce_winner
     system('clear')
     if @deck_player.count == 0
+      # If the user deck is the first to be equal to 0, they will win
       puts "Congratulations!  You won that game!"
     elsif @deck_computer.count == 0
+      # Otherwise, the computer must be the winner.
       puts "*sad trombone* You lost that game!"
     end
+    puts "Would you like to view the round results of the game?"
+    # On confirmation, the user can review the game results tally using an internal method that resets for each game initialization
+    if gets.strip.to_i == 1
+      self.announce_scores
+    else
+      puts "Thanks for playing!" 
+    end
     sleep(2)
+    
   end
 
+  def announce_scores
+    roundcount = @round_totals_computer.count
+    roundcount_array = []
+    roundcount.times do |x|
+      roundcount_array << x + 1
+    end
+    # puts "     " + roundcount_array.join(", ")
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    puts "Bot: " + @round_totals_computer.flatten.join(" - ")
+    puts "~~~~~ You won #{@round_totals_user.flatten.count('W'.colorize(:light_blue))} game/s ~~~~~"
+    puts "You: " + @round_totals_user.flatten.join(" - ")
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    loop do
+      exitscores = gets.strip
+      if exitscores != "91m"
+        break 
+      end   
+    end
+  end
 end
 
-
-# test = Game.new(2, 1)
-# test.play
