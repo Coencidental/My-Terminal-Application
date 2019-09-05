@@ -56,7 +56,7 @@ loop do
     end
   end
   system('clear')
-  puts "What difficulty would you like? 1 for easy, 2 for moderate, and 3 for hard"
+  puts "What difficulty would you like? 1 for easy, 2 for moderate, and 3 for hard!"
   # Gather player input to determine difficulty argument for game object
   difficulty = gets.strip.to_i
   

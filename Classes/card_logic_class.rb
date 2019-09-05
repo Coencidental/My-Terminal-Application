@@ -51,6 +51,7 @@ class Game
         end
       else 
         puts "That's an invalid input"     
+        sleep(0.5)
         # Checks user input to ensure their input is intentional, and also to ensure self.round calls don't stack up unintentionally
       end
     end

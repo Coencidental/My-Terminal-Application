@@ -41,7 +41,6 @@ Upon running the game, you will be prompted if you'd like to read a more extensi
 3.5)  *Run `bundle install`*
 4)  Change your working directory the now unzipped 'Main' folder.
 5)  Run `ruby run_game.rb` in the command line to access and execute the game initializing ruby file.
-6)  If this does not work 
 
 
 ## Idea/Project Motivation
