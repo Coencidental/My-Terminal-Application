@@ -24,7 +24,6 @@ class Card
   def drawcardvalues(a, b)
     # Called using both currently played cards, and will check both attributes, then draw a corresponding character for both. 
 
-    
     case a
     when 'Ace'
       drawvalue = "A "
