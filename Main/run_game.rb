@@ -61,7 +61,7 @@ loop do
   difficulty = gets.strip.to_i
   
   if difficulty == 1
-    puts artii.asciify("Easy.  Just like you.").colorize(:light_blue)
+    puts artii.asciify("Easy.  Much like you.").colorize(:light_blue)
   elsif difficulty == 2
     puts artii.asciify("Moderate.. you can do better.").colorize(:light_gray)
   else
