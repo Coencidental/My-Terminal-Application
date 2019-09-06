@@ -14,7 +14,7 @@ The intention of this project was to expand and also reinforce my personal under
 
 This application operates using text/character input, which is evaluated against a simulated opponent's reaction speed for either a win or lose case.  This simulated reaction time is adjustable, allowing for variance in difficulty.  Card totals are tracked and displayed as they change, alongside a point counter.  
 
-'The Great Mental Snap' operates on [standard 'Snap' rules](https://en.wikipedia.org/wiki/Snap_(card_game)), except with inverted card accumulation rules.  Instead of *collecting* all the cards, the user aims to **get rid** of each card in their hand.  To start each game, a shuffled deck is evenly divided between the players.  For each round of the game, one card is removed from each players hand, and both are simultaneously revealed.  If the cards match, (by index position), the player with the fastest reaction time to call 'Snap' will win that round, and all cards (including currently played cards) are placed into the losing players hand.  If the cards do not match, the process is repeated until either a snap occurs and distributes the card totals again, or until a player successfully empties his hand, winning the game.
+'The Great Mental Snap' operates on [standard 'Snap' rules](https://en.wikipedia.org/wiki/Snap_(card_game)), except with inverted card accumulation rules.  Instead of *collecting* all the cards, the user aims to **get rid** of each card in their hand.  To start each game, a shuffled deck is evenly divided between the players.  For each round of the game, one card is removed from each players hand, and both are simultaneously revealed.  If the cards match, (by index position), the player with the fastest reaction time to call 'Snap' will win that round, and all cards (including currently played cards) are placed into the losing players hand.  If the cards do not match, the process is repeated until either a snap occurs and distributes the card totals again, or until a player successfully empties their hand, winning the game.
 
 The only unmentioned additional *option* included for this project on top of the standard 'Snap' card game logic is an option for suit based comparison instead of index position.
 
@@ -45,7 +45,9 @@ Upon running the game, you will be prompted if you'd like to read a more extensi
 
 ## Idea/Project Motivation
 
-During my first and second week of learning fundamental programming skills while attending [Coder Academy's Fast Track Program](https://coderacademy.edu.au/), it was posed that we'd have to built applications during the course, so I did my best to try to have a comprehensive list of potential projects to start on, however, as I gained a better perspective on the requirements, and a better understanding of my own limitations, I found myself unsure of where to start.  When it came time to properly start this project, I decided to instead focus on what I was looking to demonstrate with my project.  
+During my first and second week of learning fundamental programming skills while attending [Coder Academy's Fast Track Program](https://coderacademy.edu.au/), it was posed that we'd have to built applications during the course, so I did my best to try to have a fairly comprehensive list of potential projects to start on, however, as I gained a better perspective on the requirements, (and a better understanding of my own limitations), I found myself unsure of where to start.
+
+When it came time to properly start this project, I decided to instead focus on what I was looking to demonstrate with my project.  
 
 During the initial planning phase, I found myself motivated to go in a number of directions, searching for a project that would both demonstrate proficient use of the fundamental concepts in software development, and also allow me to exercise some of creativity and reflect my personal interests as a developer.
 
@@ -64,10 +66,12 @@ The common features that held my interest in my initial research phase were more
 After deciding against pursuing the previously mentioned projects, I turned my focus to projects revolving around logic, namely card games.  In my initial experimentation, I considered implementing a drawn GUI, but I found it counter-intuitive to the process of cementing my basic programming skills.  Instead, I examined what input and output a simple terminal application can utilise to engage a user, and found the simple idea of a reflex/reaction based application far more appealing and genuinely engaging than any of the alternatives.  
 
 'Snap' was a particularly appealing project in the simple nature of how it operates, entertaining the player by psychological/physiological stimulation, rather than sensory focused stimulation *typical* applications utilise.  Of course, a conjunction of the two provides exponentially increased functionality and potential, but for the criteria and timeframe of this project, a purely terminal based application was more suitable than trying to integrate a GUI.  Even so, I aimed to construct a relatively pleasant interface, relying on minimalism to convey the same variables.
+ 
+~
 
 ![enter image description here](https://raw.githubusercontent.com/Coencidental/My-Terminal-Application/master/Documentation/gameplay.PNG)
 
-The concept of ruby-driven audio processing is certainly still extremely interesting to me, and in the near future I would love to revisit the idea of building a VST that cooperates with own DAW of choice.  
+The concept of ruby-driven audio processing is certainly still extremely interesting to me, and in the near future I would love to revisit the idea of building a VST audio effect from the ground up.  
 
 ## Features and Functionality
 
@@ -80,7 +84,9 @@ The culminative purpose of these individual features was that it be able to math
 I was able to construct each level of the program logic so that it can collectively cascade in a manner that greatly simplifies the process of simulating card game math.  
 
 
-Each card object holds the values required for the 'Snap' comparison mechanic, and are each in turn initialized by and grouped under a deck object.  Within this deck object, a constructor method utilises a simple algorithm to assign the required values, numerically 1 - 13, for each of the 4 suits.  The result is shuffled randomly each time it is initialized, so when reusing the same reference deck class for repeated subsequent games, a new distribution is always inevitable.
+Each card object holds the values required for the 'Snap' comparison mechanic, and are each in turn initialized by and grouped under a deck object.  Within this deck object, a constructor method utilises a simple algorithm to assign the required values, numerically 1 - 13, for each of the 4 suits.  This both more elegant a solution, and also a much more time friendly workaround.
+
+This deck result is shuffled randomly each time it is initialized, so when reusing the same reference deck class for repeated subsequent games, a new distribution is always guaranteed.
 
 This 'game-ready deck' is then passed into an internal deck sorting method, which maps the first 26 cards to one container, and the remaining 26 cards to a second container.  These represent each players remaining hand.  
 
@@ -89,6 +95,10 @@ And finally, this core game logic class is itself called by the rungame ruby fil
 For each round of the game, one card is removed from each container and placed into a complementary container for comparison and output to the display.  By evaluating whether the cards are a match *before* allowing for user input, I was able to pass the true/false match value to a method that determines the window of time available to successfully register input.  This means that for each round the cards are not a match, the timeout is set, whereas in an initial build of this program, the timeout value was always assigned a random number, which was unsuitable for user experience.
 
 Within each of these individual objects, there are functions I have written to perform *each* logical step of the game.  
+
+Graphically, this application features the incorporation of both 'colorize' and 'artii' to enhance the visual experience when trying to interpret the values of each card, as well as general gameplay and navigation/prompting.  
+
+In addition to the core game logic, I aimed to include some element of humanization, to avoid a user experience of quantization and monotony.  I achieved this through the incorporated difficulty configuration.  By assigning a difficulty variable one of 3 values, I was able to create three levels of *variable* difficulty byusing them to define the range a random number will generate within.  This ensures randomness, but also limits and configures the nature of this randomness to engage the user more accordingly.
 
 ### Extensible Features
 
@@ -114,7 +124,7 @@ Focusing more on refining the code and logic, I decided that 3 classes would all
 
 'The Great Mental Snap' is in a proof-of-concept state, at this point capable of performing the functions I established as requirements during my design and planning process.  
 
-
+As it stands, this application is in its third iteration, deriving from its predecessor builds to more efficiently independently perform each required process.
 
 
 ## Design and Planning process
@@ -146,7 +156,11 @@ For important elements of gameplay, namely when being prompted with a win or los
 
 ### Increased Output Size and Difficulty Configuration
 
-In addition to color, user ease of text interpretation was my second focus.  I implemented a gem to convert key text to ASCII art (see [Artii]([https://github.com/miketierney/artii](https://github.com/miketierney/artii))) so that it would be both more aesthetically pleasing, and also more discernible to any user trying to interpret it.
+In addition to color, user ease of text interpretation was my second priority.  I implemented a gem to convert key text to ASCII art (see [Artii]([https://github.com/miketierney/artii](https://github.com/miketierney/artii))) so that it would be both more aesthetically pleasing, and also more discernible to any user trying to interpret it.
+
+In conjunction with this, the time interval the user is allocated (depending on the difficulty chosen) is an important feature in providing an enjoyable yet challenging experience for any user.  This design was implemented primarily to provide a challenge to the user, but it is also contrarily useful in ensuring the game is playable and legible to all types of potential players.
+
+
 
 
 

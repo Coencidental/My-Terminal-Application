@@ -5,6 +5,7 @@ require_relative 'deck'
 
 # Game class:  This class serves as the overall constructor and controller for each game, holding all game variables and configurations
 class Game
+  attr_reader :gamelogic, :difficulty
   def initialize(difficulty, gamelogic)
     @difficulty = 
       # Ensures user input falls within one of 3 inbuilt difficulty settings
@@ -38,7 +39,7 @@ class Game
       puts 'Your card total is currently: ' + @deck_player.count.to_s
       puts 'The computer card total is: ' + @deck_computer.count.to_s
       puts "Whenever you're ready for your cards, enter any character you like, and be ready to hit enter if you want to snap!"
-      puts "[Your points: #{@points}]
+      puts "[Your points: #{@points}] 
       "
       puts '---------------------------------------------'
       # Prior to beginning each round, the game will print card totals and point standing
@@ -168,10 +169,10 @@ class Game
     system('clear')
     if @deck_player.count == 0
       # If the user deck is the first to be equal to 0, they will win
-      puts "Congratulations!  You won that game!"
+      puts @artiivalues.asciify("Congratulations!  You won!").colorize(:light_blue)
     elsif @deck_computer.count == 0
       # Otherwise, the computer must be the winner.
-      puts "*sad trombone* You lost that game!"
+      puts @artiivalues.asciify("(sad trombones) You lost!").colorize(:light_red)
     end
     puts "Would you like to view the round results of the game?  Enter 1 if you would, anything else to continue."
     # On confirmation, the user can review the game results tally using an internal method that resets for each game initialization
