@@ -82,6 +82,8 @@ loop do
   system('clear')
 end
 
+puts "Thank you for playing, have a nice day!"
+
 # end
 
 

@@ -8,13 +8,13 @@ By Coen Drexler, started at 3:00PM, 2-9-2019
 
 'The Great Mental Snap' is a single-player terminal application built to simulate the colloquially popular card game 'Snap', using the Ruby programming language.
 
-The intention of this project was to expand and also reinforce my personal understanding of practically implementing the fundamental concepts of program development and modular, DRY code writing, in order to realistically simulate the interactive mechanics of a concept reliant upon both logic and mathematics.  
+The intention of this project was to expand and also to reinforce my personal understanding of practically implementing the fundamental concepts of program development and in particular, writing modular, DRY code in conjunction with TDD (Test Driven Development), in order to realistically simulate the interactive mechanics of a concept reliant upon both logic and mathematics.  
 
 ![enter image description here](https://raw.githubusercontent.com/Coencidental/My-Terminal-Application/master/Documentation/Welcomemessage.PNG)
 
-This application operates using text/character input, which is evaluated against a simulated opponent's reaction speed for either a win or lose case.  This simulated reaction time is adjustable, allowing for variance in difficulty.  Card totals are tracked and displayed as they change, alongside a point counter.  
+This application operates using text/character input, which is evaluated against a simulated opponent's assigned reaction speed for either a win or a lose case.  This simulated reaction time is adjustable, allowing for variance in difficulty between games.  Card totals are tracked and displayed as they change, alongside an accordingly adjusted point counter.  
 
-'The Great Mental Snap' operates on [standard 'Snap' rules](https://en.wikipedia.org/wiki/Snap_(card_game)), except with inverted card accumulation rules.  Instead of *collecting* all the cards, the user aims to **get rid** of each card in their hand.  To start each game, a shuffled deck is evenly divided between the players.  For each round of the game, one card is removed from each players hand, and both are simultaneously revealed.  If the cards match, (by index position), the player with the fastest reaction time to call 'Snap' will win that round, and all cards (including currently played cards) are placed into the losing players hand.  If the cards do not match, the process is repeated until either a snap occurs and distributes the card totals again, or until a player successfully empties their hand, winning the game.
+'The Great Mental Snap' operates on [standard 'Snap' rules](https://en.wikipedia.org/wiki/Snap_(card_game)), with the main adjustment being inverted card accumulation/distribution rules.  Instead of *collecting* all the cards to win a game, the user aims to **get rid** of each card in their hand.  To start each game, a shuffled deck is evenly divided between the players.  For each round of the game, one card is removed from each players hand, and both are simultaneously revealed.  If the cards match, (by index position), the player with the fastest reaction time to call 'Snap' will win that round, and all cards (including currently played cards) are placed into the losing players hand.  If the cards do not match, the process is repeated until either a snap occurs and distributes the card totals again, or until a player successfully empties their hand, winning the game.
 
 The only unmentioned additional *option* included for this project on top of the standard 'Snap' card game logic is an option for suit based comparison instead of index position.
 
@@ -22,14 +22,14 @@ The only unmentioned additional *option* included for this project on top of the
 
 Playing instructions:
 
-1)  Change your working directory to the Snap file
+1)  Change your working directory to: Snap -> Main
 2)  Enter `ruby run_game.rb`
 3)  When welcomed, enter any set of characters to move to the game setup menu. 
 4)  If required, enter R to read the game rules. 
 5)  When prompted, enter your desired difficulty.
 6)  When prompted, enter your desired card comparison logic.
 7)  After the game has initialized, when prompted, enter any character to display cards.
-8) If you wish to snap, hit enter.  Otherwise, enter nothing.  
+8) If you wish to snap, hit enter.  Otherwise, enter nothing and the game will automatically return to the round prompt.  
 
 Upon running the game, you will be prompted if you'd like to read a more extensive set of rules.
 
@@ -45,9 +45,9 @@ Upon running the game, you will be prompted if you'd like to read a more extensi
 
 ## Idea/Project Motivation
 
-During my first and second week of learning fundamental programming skills while attending [Coder Academy's Fast Track Program](https://coderacademy.edu.au/), it was posed that we'd have to built applications during the course, so I did my best to try to have a fairly comprehensive list of potential projects to start on, however, as I gained a better perspective on the requirements, (and a better understanding of my own limitations), I found myself unsure of where to start.
+During my first and second week of learning fundamental programming skills while attending [Coder Academy's Fast Track Program](https://coderacademy.edu.au/), it was posed that we'd have to built applications during the course, so I did my best to try to have a fairly comprehensive list of potential projects to start on, however, as I gained a better perspective of the project requirements, (and a better understanding of my own limitations), I found myself unsure of where to start.
 
-When it came time to properly start this project, I decided to instead focus on what I was looking to demonstrate with my project.  
+When it came time to properly start this project, I decided to instead focus on what I was looking to *demonstrate* with my project.  
 
 During the initial planning phase, I found myself motivated to go in a number of directions, searching for a project that would both demonstrate proficient use of the fundamental concepts in software development, and also allow me to exercise some of creativity and reflect my personal interests as a developer.
 
@@ -58,10 +58,11 @@ Of these, the most actively researched and pursued potential projects were:
 -   `A MIDI file parsing guitar tablature generation tool`
 -   `A PDF/e-book file organisation tool, with a read, bookmark, and search function`
 -   `A command line operated VST audio plugin for a Digital Audio Workstation`
+- `A user typing speed test`
 
 I decided for each of these that I would be either: limited by the scope of the nature of a terminal application, the lack of available language support, the timeframe and complexity involved outweighing the educational utilitarianism of a more straightforward alternative, or that I'd be missing particular features I was desiring out of my project.  
 
-The common features that held my interest in my initial research phase were more intricate concepts of input/output, particularly those involving audio interpretation/manipulation.  Rather than focusing on what I defined as sufficient complexity in the project idea, I found myself more interested in the relationship between the three contributing elements: the user/s, the input, and the output.  I decided early on that when using a relatively simple input/output environment, I would be able to achieve a far more meaningful interaction with the user if I focused on taking advantage of them, rather than allowing them to take advantage of the program.  
+The common features between ideas that held my interest in my initial research phase were those utilizing more intricate concepts of input/output, especially those involving audio interpretation/manipulation.  Rather than focusing on what I defined as sufficient complexity in the project idea, I found myself more interested in the relationship between the three contributing elements: the user/s, the input, and the output.  I decided early on that when using a relatively simple input/output environment, I would be able to achieve a far more meaningful interaction with the user if I focused on taking advantage of their physiological responses to challenging stimuli, rather than trying to provide a thoroughly engaging GUI interface.
 
 After deciding against pursuing the previously mentioned projects, I turned my focus to projects revolving around logic, namely card games.  In my initial experimentation, I considered implementing a drawn GUI, but I found it counter-intuitive to the process of cementing my basic programming skills.  Instead, I examined what input and output a simple terminal application can utilise to engage a user, and found the simple idea of a reflex/reaction based application far more appealing and genuinely engaging than any of the alternatives.  
 
@@ -92,6 +93,7 @@ This 'game-ready deck' is then passed into an internal deck sorting method, whic
 
 The process is repeated, initialized and controlled by a gameplay method within the core game logic class.  
 And finally, this core game logic class is itself called by the rungame ruby file, connecting the modular chain of card game logic to the user.  Within this rungame file, the user is prompted for the required arguments needed to create the desired game.
+
 For each round of the game, one card is removed from each container and placed into a complementary container for comparison and output to the display.  By evaluating whether the cards are a match *before* allowing for user input, I was able to pass the true/false match value to a method that determines the window of time available to successfully register input.  This means that for each round the cards are not a match, the timeout is set, whereas in an initial build of this program, the timeout value was always assigned a random number, which was unsuitable for user experience.
 
 Within each of these individual objects, there are functions I have written to perform *each* logical step of the game.  
@@ -111,7 +113,7 @@ The code of this application is designed to be modular.  In the future therefore
 
 ## Code Structure
 
-After confirming the individual project details, requirements and overall elements, an initial draft build was done to explore exactly how the execution of the game logic would be achieved.  This consisted of a single ruby file, 2 classes, and incredibly lacking optimization for efficiency/modularization.  At the time, this was necessary to gain a grounded understanding of how to mathematically distribute my required variables and objects, and gave an excellent reference when it came to creating a more modular reformat of this project, with a focus on shared variables.  
+After confirming the individual project details, their requirements and the overall concept, an initial draft build was done to explore exactly how the execution of the game logic would be achieved.  This consisted of a single ruby file, 2 classes, and incredibly lacking optimization for efficiency/modularization.  At the time, this was necessary to gain a grounded understanding of how to mathematically distribute my required variables and objects, and gave an excellent reference when it came to creating a more modular reformat of this project, with a focus on shared variables.  
 
 Focusing more on refining the code and logic, I decided that 3 classes would allow me to divide the steps I needed into user interaction, game generation/flow control, and card generation/flow control.  This worked for a simple implementation, but it immediately became clear that it would make far more sense to use 4 modules instead of 3, as it would allow me to split the card logic into two parts, and classify one as a deck object, forming an intermediary initializer/controller for my required card objects.  
 
@@ -129,11 +131,23 @@ As it stands, this application is in its third iteration, deriving from its pred
 
 ## Design and Planning process
 
-When first approaching this project, I found it initially difficult to conceive of something that was within the confines of my ability, while simultaneously not sacrificing creativity.  
+When first approaching this project, I found it initially difficult to conceive of something that was both within the confines of my ability, and simultaneously not sacrificing creativity.  
+
+My first priority was to analyse what features I was going to require out of my program foremost, and genuine user interactivity quickly became the dominant factor in whether I was satisfied with my concept or not.  
+
+
+
+As described in the idea/project motivation discussion, I arrived at my idea of a time based interaction game, and snap was the most suitable/realistically achievable project for this category.  
+
+To test the concept and experiment with how it is that I can process input, I created a first draft build, and used this as reference when trying to recreate individual elements of the gameplay later on in my revised, reformatted build.  
+
+In developing and reformatting this idea, I created a flowchart to break down the logic flow throughout my revised application.
 
 
 
 ![Overall gameplay logical processes breakdown](https://raw.githubusercontent.com/Coencidental/My-Terminal-Application/master/Documentation/DevPlan.png)
+
+
 
 
 ## Testing
